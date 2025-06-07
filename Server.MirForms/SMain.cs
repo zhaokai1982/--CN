@@ -163,6 +163,12 @@ namespace Server
 
         private void SMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            var result = MessageBox.Show("Are you sure you want to shut down the server?", "Close confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                e.Cancel = true; // cancel close
+                return;
+            }
             Envir.Stop();
         }
 
