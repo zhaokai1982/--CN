@@ -22,6 +22,10 @@ namespace Server
             InitializeComponent();
 
             AutoResize();
+            //Double click the event to clear the content
+            LogTextBox.DoubleClick += LogTextBox_DoubleClick;
+            DebugLogTextBox.DoubleClick += DebugLogTextBox_DoubleClick;
+            ChatLogTextBox.DoubleClick += ChatLogTextBox_DoubleClick;
         }
 
         private void AutoResize()
@@ -601,6 +605,37 @@ namespace Server
             Namelists form = new Namelists();
 
             form.ShowDialog();
+        }
+        // Double click on the log window to clear the content (with confirmation)
+        private void LogTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to clear the log content?", "Confirm to clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                LogTextBox.Clear();
+            }
+        }
+
+        //Double click in the debugging window to clear the content (with confirmation)
+        private void DebugLogTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to clear the debugging content?", "Confirm to clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DebugLogTextBox.Clear();
+            }
+        }
+
+        //Double click in chat window to clear content (with confirmation)
+        private void ChatLogTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to clear the chat content?", "Confirm to clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ChatLogTextBox.Clear();
+            }
+        }
+
+        private void MainMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
